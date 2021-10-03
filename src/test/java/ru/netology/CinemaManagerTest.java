@@ -3,13 +3,12 @@ package ru.netology;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CinemaManagerTest {
     private CinemaManager manager = new CinemaManager();
+
 
     @BeforeEach
     public void setUp() {
@@ -38,26 +37,29 @@ public class CinemaManagerTest {
     }
 
     @Test
+    public void add(){
+        manager.add(manager.getTwelve());
+        int actual = manager.getMovies().length;
+        int expected = 12;
+        assertEquals(expected, actual);
+    }
+    @Test
     public void get10() {
-//        tmp[lastIndex] = new Cinema(lastIndex, "serial", "Supernatiral", "url");
         Cinema[] actual = manager.get10();
         Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond()};
-
         assertArrayEquals(expected, actual);
     }
 
-    @Test
+     @Test
     public void customersСhoice0() {
         Cinema[] actual = manager.indexId(0);
-        System.out.println(Arrays.toString(actual));
-        Cinema[] expected = new Cinema[0]; //нулевой
+        Cinema[] expected = new Cinema[0];
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void customersСhoice1() {
         Cinema[] actual = manager.indexId(1);
-        System.out.println(Arrays.toString(actual));
         Cinema[] expected = new Cinema[]{manager.getEleventh()};
         assertArrayEquals(expected, actual);
     }
@@ -71,11 +73,9 @@ public class CinemaManagerTest {
 
     @Test
     public void customersСhoiceNegativeNumber() {
-        Cinema[] actual = manager.indexId(-1);
-        Cinema[] expected = new Cinema[0]; //нулевой
-        System.out.println(Arrays.toString(actual));
-        System.out.println(Arrays.toString(expected));
-        assertArrayEquals(expected, actual);
+    Cinema[] actual = manager.indexId(-1);
+        Cinema[] expected = new Cinema[10];
+         assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -84,4 +84,4 @@ public class CinemaManagerTest {
         Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond(), manager.getFirst(), null, null, null, null};
         assertArrayEquals(expected, actual);
     }
-}
+ }

@@ -14,4 +14,5 @@ public class Cinema {
     private String style;
     private String name;
     private String picture;
+
 }
