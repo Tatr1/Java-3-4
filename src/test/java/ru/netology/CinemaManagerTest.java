@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CinemaManagerTest {
     private CinemaManager manager = new CinemaManager();
-
+    private CinemaManager manager1 = new CinemaManager(10);
 
     @BeforeEach
     public void setUp() {
@@ -37,23 +37,17 @@ public class CinemaManagerTest {
     }
 
     @Test
-    public void add(){
+    public void add() {
         manager.add(manager.getTwelve());
         int actual = manager.getMovies().length;
         int expected = 12;
         assertEquals(expected, actual);
     }
-    @Test
-    public void get10() {
-        Cinema[] actual = manager.get10();
-        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond()};
-        assertArrayEquals(expected, actual);
-    }
 
-     @Test
+    @Test
     public void customersСhoice0() {
         Cinema[] actual = manager.indexId(0);
-        Cinema[] expected = new Cinema[0];
+        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond()};
         assertArrayEquals(expected, actual);
     }
 
@@ -65,7 +59,7 @@ public class CinemaManagerTest {
     }
 
     @Test
-    public void customersСhoice5() {
+    public void customersСhoice() {
         Cinema[] actual = manager.indexId(5);
         Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh()};
         assertArrayEquals(expected, actual);
@@ -73,9 +67,9 @@ public class CinemaManagerTest {
 
     @Test
     public void customersСhoiceNegativeNumber() {
-    Cinema[] actual = manager.indexId(-1);
-        Cinema[] expected = new Cinema[10];
-         assertArrayEquals(expected, actual);
+        Cinema[] actual = manager.indexId(-1);
+        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond()};
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -84,4 +78,31 @@ public class CinemaManagerTest {
         Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond(), manager.getFirst(), null, null, null, null};
         assertArrayEquals(expected, actual);
     }
- }
+    @Test
+    public void customers10WithoutZero() {
+        manager1.add(manager.getFirst());
+        manager1.add(manager.getSecond());
+        manager1.add(manager.getThird());
+        manager1.add(manager.getFourth());
+        manager1.add(manager.getFifth());
+        manager1.add(manager.getSixth());
+        manager1.add(manager.getSeventh());
+        manager1.add(manager.getEighth());
+        manager1.add(manager.getNinth());
+        manager1.add(manager.getTenth());
+        manager1.add(manager.getEleventh());
+        Cinema[] actual = manager1.indexId();
+        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond()};
+        assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void customers10WithZero() {
+        manager1.add(manager.getFirst());
+        manager1.add(manager.getSecond());
+        manager1.add(manager.getThird());
+        Cinema[] actual = manager1.indexId();
+        Cinema[] expected = new Cinema[]{manager.getThird(), manager.getSecond(), manager.getFirst(), null, null, null, null, null, null, null};
+        assertArrayEquals(expected, actual);
+    }
+
+}

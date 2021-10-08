@@ -1,11 +1,10 @@
 package ru.netology;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import java.util.Arrays;
+
 @NoArgsConstructor
-//@AllArgsConstructor
 
 public class CinemaManager {
     private Cinema[] movies = new Cinema[0];
@@ -22,6 +21,11 @@ public class CinemaManager {
     private Cinema eleventh = new Cinema(0, 11, "cartoon", "Up", "url");
     private Cinema twelve = new Cinema(0, 12, "serial", "Supernatiral", "url");
 
+    public CinemaManager(int indexId) {
+        Cinema[] movies10 = new Cinema[0];
+        this.movies = movies10;
+    }
+
     public void add(Cinema movie) {
         int length = movies.length + 1;
         Cinema[] tmp = new Cinema[length];
@@ -31,28 +35,78 @@ public class CinemaManager {
         movies = tmp;
     }
 
-    public Cinema[] get10() {
-        Cinema[] result = new Cinema[10];
-        for (int i = 0; i < result.length; i++) {
+    public Cinema[] indexId(int indexId) {
+        Cinema cinema = new Cinema();
+        cinema.setIndexId(indexId);
+        indexId = cinema.getIndexId();
+        Cinema[] result = new Cinema[indexId];
+        for (int i = 0; i < indexId; i++) {
             int index = movies.length - i - 1;
-            result[i] = movies[index];
+            if (index >= 0) {
+                result[i] = movies[index];
+            }
         }
         return result;
     }
-
-    public Cinema[] indexId(int indexId) {
-        if (indexId < 0) {
-            Cinema[] result = new Cinema[10];
-            return result;
-        } else {
-            Cinema[] result = new Cinema[indexId];
-            for (int i = 0; i < indexId; i++) {
-                int index = movies.length - i - 1;
-                if (index >= 0) {
-                    result[i] = movies[index];
-                }
-            }
-            return result;
+    public Cinema[] indexId() {
+     Cinema[] movies10 = new Cinema[10];
+        for (int i = 0; i < 10; i++) {
+            int index = movies.length - i - 1;
+            if (index >= 0) {
+                movies10[i] = movies[index];
+             }
         }
+        return movies10;
+    }
+    public Cinema getFirst() {
+        return first;
+    }
+
+    public Cinema getSecond() {
+        return second;
+    }
+
+    public Cinema getThird() {
+        return third;
+    }
+
+    public Cinema getFourth() {
+        return fourth;
+    }
+
+    public Cinema getFifth() {
+        return fifth;
+    }
+
+    public Cinema getSixth() {
+        return sixth;
+    }
+
+    public Cinema getSeventh() {
+        return seventh;
+    }
+
+    public Cinema getEighth() {
+        return eighth;
+    }
+
+    public Cinema getNinth() {
+        return ninth;
+    }
+
+    public Cinema getTenth() {
+        return tenth;
+    }
+
+    public Cinema getEleventh() {
+        return eleventh;
+    }
+
+    public Cinema getTwelve() {
+        return twelve;
+    }
+
+    public Cinema[] getMovies() {
+        return movies;
     }
 }
