@@ -7,23 +7,35 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CinemaManagerTest {
+    private Cinema[] movies = new Cinema[0];
     private CinemaManager manager = new CinemaManager();
-    private CinemaManager manager1 = new CinemaManager(10);
+    private Cinema first = new Cinema(0, 1, "action", "Deadpool", "url");
+    private Cinema second = new Cinema(0, 2, "comedy", "Zorro", "url");
+    private Cinema third = new Cinema(0, 3, "si-fi", "Dune", "url");
+    private Cinema fourth = new Cinema(0, 4, "cartoon", "Lion King", "url");
+    private Cinema fifth = new Cinema(0, 5, "drama", "1+1", "url");
+    private Cinema sixth = new Cinema(0, 6, "action", "Gentlemen", "url");
+    private Cinema seventh = new Cinema(0, 7, "cartoon", "Shrek", "url");
+    private Cinema eighth = new Cinema(0, 8, "drama", "Pianist", "url");
+    private Cinema ninth = new Cinema(0, 9, "comedy", "Groundhog Day", "url");
+    private Cinema tenth = new Cinema(0, 10, "cartoon", "Mulan", "url");
+    private Cinema eleventh = new Cinema(0, 11, "cartoon", "Up", "url");
+    private Cinema twelve = new Cinema(0, 12, "serial", "Supernatiral", "url");
 
     @BeforeEach
     public void setUp() {
         manager = new CinemaManager();
-        manager.add(manager.getFirst());
-        manager.add(manager.getSecond());
-        manager.add(manager.getThird());
-        manager.add(manager.getFourth());
-        manager.add(manager.getFifth());
-        manager.add(manager.getSixth());
-        manager.add(manager.getSeventh());
-        manager.add(manager.getEighth());
-        manager.add(manager.getNinth());
-        manager.add(manager.getTenth());
-        manager.add(manager.getEleventh());
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
     }
 
     @Test
@@ -38,7 +50,7 @@ public class CinemaManagerTest {
 
     @Test
     public void add() {
-        manager.add(manager.getTwelve());
+        manager.add(twelve);
         int actual = manager.getMovies().length;
         int expected = 12;
         assertEquals(expected, actual);
@@ -46,62 +58,36 @@ public class CinemaManagerTest {
 
     @Test
     public void customersСhoice0() {
-        Cinema[] actual = manager.indexId(0);
-        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond()};
+        Cinema[] actual = manager.choosingTheNumberOfMovies(0);
+        Cinema[] expected = new Cinema[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void customersСhoice1() {
-        Cinema[] actual = manager.indexId(1);
-        Cinema[] expected = new Cinema[]{manager.getEleventh()};
+        Cinema[] actual = manager.choosingTheNumberOfMovies(1);
+        Cinema[] expected = new Cinema[]{eleventh};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void customersСhoice() {
-        Cinema[] actual = manager.indexId(5);
-        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh()};
+        Cinema[] actual = manager.choosingTheNumberOfMovies(5);
+        Cinema[] expected = new Cinema[]{eleventh, tenth, ninth, eighth, seventh};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void customersСhoiceNegativeNumber() {
-        Cinema[] actual = manager.indexId(-1);
-        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond()};
+        Cinema[] actual = manager.choosingTheNumberOfMovies(-1);
+        Cinema[] expected = new Cinema[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void customersСhoice15() {
-        Cinema[] actual = manager.indexId(15);
-        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond(), manager.getFirst(), null, null, null, null};
-        assertArrayEquals(expected, actual);
-    }
-    @Test
-    public void customers10WithoutZero() {
-        manager1.add(manager.getFirst());
-        manager1.add(manager.getSecond());
-        manager1.add(manager.getThird());
-        manager1.add(manager.getFourth());
-        manager1.add(manager.getFifth());
-        manager1.add(manager.getSixth());
-        manager1.add(manager.getSeventh());
-        manager1.add(manager.getEighth());
-        manager1.add(manager.getNinth());
-        manager1.add(manager.getTenth());
-        manager1.add(manager.getEleventh());
-        Cinema[] actual = manager1.indexId();
-        Cinema[] expected = new Cinema[]{manager.getEleventh(), manager.getTenth(), manager.getNinth(), manager.getEighth(), manager.getSeventh(), manager.getSixth(), manager.getFifth(), manager.getFourth(), manager.getThird(), manager.getSecond()};
-        assertArrayEquals(expected, actual);
-    }
-    @Test
-    public void customers10WithZero() {
-        manager1.add(manager.getFirst());
-        manager1.add(manager.getSecond());
-        manager1.add(manager.getThird());
-        Cinema[] actual = manager1.indexId();
-        Cinema[] expected = new Cinema[]{manager.getThird(), manager.getSecond(), manager.getFirst(), null, null, null, null, null, null, null};
+        Cinema[] actual = manager.choosingTheNumberOfMovies(15);
+        Cinema[] expected = new Cinema[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
     }
 
