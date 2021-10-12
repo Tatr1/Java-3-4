@@ -27,9 +27,9 @@ public class Cinema {
         if (indexId <= 0) {
             indexId = 10;
         }
-        if (indexId > 10) {
-            indexId = 10;
-        }
+//        if (indexId > 10) {
+//            indexId = 10;
+//        }
         this.indexId = indexId;
     }
 
