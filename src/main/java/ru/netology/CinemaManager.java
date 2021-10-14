@@ -2,14 +2,15 @@ package ru.netology;
 
 public class CinemaManager {
     private Cinema[] movies = new Cinema[0];
-    Cinema cinema = new Cinema();
+    private int resultLength;
+
 
     public CinemaManager() {
-        cinema.setIndexId(10);
+        this.movies = movies;
     }
 
-    public CinemaManager(int indexId) {
-        cinema.setIndexId(indexId);
+    public CinemaManager(int resultLength) {
+        this.movies = movies;
     }
 
     public void add(Cinema movie) {
@@ -21,20 +22,22 @@ public class CinemaManager {
         movies = tmp;
     }
 
-    public Cinema[] choosingTheNumberOfMovies(int indexId) {
-        if (indexId == 0) {
-            indexId = 10;
+    public Cinema[] methodOfIssue() {
+        if (resultLength <= 0) {
+            resultLength = 10;
         }
-        cinema.setIndexId(indexId);
-        indexId = cinema.getIndexId();
-        Cinema[] result = new Cinema[indexId];
-        for (int i = 0; i < indexId; i++) {
+        Cinema[] result = new Cinema[resultLength];
+        for (int i = 0; i < resultLength; i++) {
             int index = movies.length - i - 1;
             if (index >= 0) {
                 result[i] = movies[index];
             }
         }
         return result;
+    }
+
+    public void setResultLength(int resultLength) {
+        this.resultLength = resultLength;
     }
 
     public Cinema[] getMovies() {
